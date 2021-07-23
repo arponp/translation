@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
-// import { detectLanguage, translateLanguage } from './api/translate';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import languages from './srv/languages';
 
-export default function App() {
-    const [textToTranslate, setTextToTranslate] = useState('');
-
+const App = () => {
+    const [text, setText] = useState('');
+    const [language, setLanguage] = useState('');
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(text, language);
+    };
     return (
         <div>
-            <h1>Translate App</h1>
-            <input
-                type="text"
-                placeholder="Enter translated text here"
-                onChange={e => setTextToTranslate(e.target.value)}
-            />
-            <p>{textToTranslate}</p>
+            <h1>Translation App</h1>
+            <form onSubmit={handleSubmit}>
+                <textarea
+                    placeholder="Insert text here!"
+                    onChange={e => setText(e.target.value)}
+                />
+                <div />
+                <select onChange={e => setLanguage(e.target.value)}>
+                    <option selected>Select Language</option>
+                    {languages.map(lang => {
+                        return <option value={lang.code}>{lang.name}</option>;
+                    })}
+                </select>
+                <div />
+                <button type="submit">Translate</button>
+            </form>
         </div>
     );
-}
+};
+
+export default App;
