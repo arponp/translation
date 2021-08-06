@@ -7,8 +7,8 @@ const App = () => {
     const [text, setText] = useState('');
     const [detectedLanguage, setDetectedLanguage] = useState('');
     const [language, setLanguage] = useState('');
+    const [translation, setTranslation] = useState('');
     const handleChange = async e => {
-        e.preventDefault();
         setText(e.target.value);
         const dla = await detectLanguage(text);
         languages.forEach(lang => {
@@ -17,10 +17,15 @@ const App = () => {
             }
         });
     };
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const t = await translateLanguage(text, language);
+        setTranslation(t);
+    };
     return (
         <div>
             <h1>Translation App</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <textarea
                     placeholder="Insert text here!"
                     onChange={handleChange}
@@ -44,6 +49,8 @@ const App = () => {
                 </select>
                 <div />
                 <button type="submit">Translate</button>
+                <div />
+                {translation}
             </form>
         </div>
     );

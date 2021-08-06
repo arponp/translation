@@ -150,7 +150,7 @@ const languages = [
     { code: 'so', name: 'Somali' },
     { code: 'st', name: 'Sotho, Southern' },
     { code: 'nr', name: 'South Ndebele' },
-    { code: 'es', name: 'Spanish, Castilian' },
+    { code: 'es', name: 'Spanish' },
     { code: 'su', name: 'Sundanese' },
     { code: 'sw', name: 'Swahili' },
     { code: 'ss', name: 'Swati' },
